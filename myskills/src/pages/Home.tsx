@@ -11,26 +11,42 @@ import {
 import { Button } from './components/Button';
 import { SkillCard } from './components/SkillCard';
 
+interface SkillData {
+  id: string;
+  name: string;
+}
+
 export function Home() {
   const [newSkill, setNewSkill] = useState('');
-  const [mySkills, setMySkills] =  useState([]);
-  const [greetings, setGreetings] = useState('');
+  const [mySkills, setMySkills] =  useState<SkillData[]>([]);
+  const [greeting, setGreeting] = useState('');
 
   function handleAddNewSkill(){
-    setMySkills(oldState => [...oldState, newSkill]);
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill
+    }
+
+    setMySkills(oldState => [...oldState, data]);
+  }
+
+  function handleRemoveSkill(id: string) {
+    setMySkills(oldState => oldState.filter(
+      skill => skill.id !== id
+    ));
   }
 
   useEffect(( ) => {
     const currentHour = new Date().getHours();
 
     if (currentHour < 12) {
-      setGreetings('Bom dia');
+      setGreeting('Bom dia');
     } else if (currentHour >= 12 && currentHour < 18){
-      setGreetings('Boa tarde');
+      setGreeting('Boa tarde');
     } else {
-      setGreetings('Boa noite');
+      setGreeting('Boa noite');
     }
-  },[greetings]);
+  },[greeting]);
 
   return (
     <SafeAreaView style={styles.container}>      
@@ -40,7 +56,7 @@ export function Home() {
       </Text>
 
       <Text style={styles.greetings}>
-        {greetings}
+        {greeting}
       </Text>
 
       <TextInput 
@@ -50,7 +66,10 @@ export function Home() {
         onChangeText={setNewSkill}
       />
 
-      <Button onPress={handleAddNewSkill}/>
+      <Button         
+        title="Add"
+        onPress={handleAddNewSkill}
+      />
 
       <Text style={[styles.title, { marginVertical: 50 }]}>
         My Skills
@@ -58,9 +77,12 @@ export function Home() {
       
       <FlatList 
         data={mySkills}
-        keyExtractor={item => item}
+        keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <SkillCard skill={item} />
+          <SkillCard 
+            skill={item.name}
+            onPress={() => handleRemoveSkill(item.id)}
+          />
         )}
       />      
 
