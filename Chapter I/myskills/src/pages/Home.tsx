@@ -26,7 +26,7 @@ export function Home() {
       id: String(new Date().getTime()),
       name: newSkill
     }
-
+    
     setMySkills(oldState => [...oldState, data]);
   }
 
@@ -52,7 +52,7 @@ export function Home() {
     <SafeAreaView style={styles.container}>      
 
       <Text style={styles.title}>
-        Welcome, Mailson
+        Bem vindo, Mailson
       </Text>
 
       <Text style={styles.greetings}>
