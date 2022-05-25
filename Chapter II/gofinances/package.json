@@ -16,10 +16,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
-<<<<<<< HEAD
-=======
     "react-native-responsive-fontsize": "^0.5.1",
->>>>>>> c91668fe02e535bc3198786132ee0e84bd4c6a35
     "react-native-web": "0.17.1",
     "styled-components": "^5.3.3"
   },

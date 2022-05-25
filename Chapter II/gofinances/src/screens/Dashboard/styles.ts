@@ -1,36 +1,27 @@
 import styled from "styled-components/native";
-<<<<<<< HEAD
-
-export const Container = styled.View`
-    flex: 1;
-    justify-content: center;
-    align-items: center;   
-    background-color: ${({ theme }) => theme.colors.background};
-`;
-
-=======
+import { Feather } from '@expo/vector-icons';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
     flex: 1;
+    align-items: center;    
     background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Header = styled.View`
     width: 100%;
+    justify-content: center; 
     height: ${RFPercentage(42)}px;
 
     background-color: ${({ theme }) => theme.colors.primary};
 `;
 
->>>>>>> c91668fe02e535bc3198786132ee0e84bd4c6a35
-export const Title = styled.Text`
-    font-size: 24px;    
-    color: ${({ theme }) => theme.colors.title};
-    font-family: ${({ theme }) => theme.fonts.regular};
-<<<<<<< HEAD
-`;
-=======
+export const UserWrapper = styled.View`
+    width: 100%;
+    padding: 0 24px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 `;
 
 export const UserInfo = styled.View`
@@ -56,7 +47,12 @@ export const UserGreeting = styled.Text`
 `;
 
 export const UserName = styled.Text`
+    color: ${({ theme }) => theme.colors.shape};
     font-size: ${RFValue(18)}px;
     font-family: ${({ theme }) => theme.fonts.bold};
 `;
->>>>>>> c91668fe02e535bc3198786132ee0e84bd4c6a35
+
+export const Icon = styled(Feather)`
+    color: ${({ theme }) => theme.colors.secondary};
+    font-size: ${RFValue(24)}px;
+`;
