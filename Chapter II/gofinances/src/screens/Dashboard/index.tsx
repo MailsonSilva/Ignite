@@ -1,6 +1,6 @@
 import React from 'react'
 import { HighlightCard } from '../../components/HighlightCard/Index';
-import TransactionCard from '../../components/TransactionCard';
+import {TransactionCard, TransactionCardProps} from '../../components/TransactionCard';
 import {
     Container,
     Header,
@@ -13,10 +13,51 @@ import {
     Icon,
     HighlightCards,
     Transactions,
-    Title
+    Title,
+    TransactionsList
 } from './styles';
 
+export interface DataListProps extends TransactionCardProps {
+    id: string;
+}
+
 export default function Dashboard() {
+    const data: DataListProps[] = [
+        {
+            id: '1',
+            type: 'positive',
+            title:"Deenvolvimento de site",
+            amount:"R$ 12.000,00",
+            category:{
+                name: "Vendas",
+                icon: "dollar-sign"
+            },
+            date:"06/07/2022"
+        },
+        {
+            id: '2',
+            type: 'negative',
+            title:"Hmburguer",
+            amount:"R$ 57,00",
+            category:{
+                name: "Lanche",
+                icon: "coffee"
+            },
+            date:"06/07/2022"
+        },
+        {
+            id: '3',
+            type: 'negative',
+            title:"Aluguel",
+            amount:"R$ 12.000",
+            category:{
+                name: "Casa",
+                icon: "shopping-bag"
+            },
+            date:"06/07/2022"
+        }
+    ];
+
     return (
         <Container>            
             <Header>
@@ -58,7 +99,13 @@ export default function Dashboard() {
             <Transactions>
                 <Title>Listagem</Title>
 
-                <TransactionCard/>
+                <TransactionsList
+                    data={data}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) => <TransactionCard data={item} />}
+                    
+                />
+                
             </Transactions>
         </Container>
     )
